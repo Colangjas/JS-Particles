@@ -1,5 +1,5 @@
-const canvas = document.getElementById('canvas1');
-const ctx = canvas.getContext('2d');
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
@@ -87,22 +87,19 @@ function init() {
     let colour = "#444444";
 
     particlesArray.push(
-    //   new Particle(x, y, directionX, directionY, radius, colour)
-       new Particle(x, y, directionX, directionY, radius, colour)
+      new Particle(x, y, directionX, directionY, radius, colour)
     );
   }
   console.log(particlesArray);
-  animate();
 }
 
 // animate loop
 function animate() {
   ctx.clearRect(0, 0, innerWidth, innerHeight);
-  window.requestAnimationFrame(animate);
-
   for (let i = 0; i < particlesArray.length; i++) {
     particlesArray[i].update();
   }
+  window.requestAnimationFrame(animate);
   connect();
 }
 
@@ -127,4 +124,17 @@ function connect() {
   }
 }
 
+window.addEventListener('resize', function(){
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
+    mouse.radius = (canvas.height/80) * (canvas.height/80);
+    init();
+});
+
+window.addEventListener('mouseout', function(){
+    mouse.x = null;
+    mouse.y = null;
+});
+
 init();
+animate();
