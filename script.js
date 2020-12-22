@@ -17,6 +17,7 @@ window.addEventListener("mousemove", function (e) {
   mouse.y = e.y;
 });
 
+
 // create particles
 class Particle {
   constructor(x, y, directionX, directionY, radius, colour) {
