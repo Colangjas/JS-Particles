@@ -105,6 +105,7 @@ function animate() {
 
 // check if particles are close enough to draw a line
 function connect() {
+    let opacity = 1;
   for (let a = 0; a < particlesArray.length; a++) {
     for (let b = 0; b < particlesArray.length; b++) {
       let distance =
@@ -113,7 +114,8 @@ function connect() {
         (particlesArray[a].y - particlesArray[b].y) *
           (particlesArray[a].y - particlesArray[b].y);
       if (distance < (canvas.width / 7) * (canvas.height / 7)) {
-        ctx.strokeStyle = "#444444";
+        opacity = opacity - distance/200000;
+        ctx.strokeStyle = "rgba(120,120,120," + opacity +")";
         ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
